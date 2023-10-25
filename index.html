@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>🕶️ shadow-styles demo site</title>
+    <link rel="stylesheet" href="demo-resources/stylesheet-a.css" />
+    <link rel="preload" href="demo-resources/stylesheet-b.css" as="style" />
+</head>
+
+<body>
+    <h1>Shadow Styles demo site 🕶️</h1>
+
+    <a href="https://github.com/glombek/shadow-styles" title="Go to GitHub repo"><img
+            src="https://img.shields.io/static/v1?label=glombek&message=shadow-styles&color=blue&logo=github"
+            alt="glombek - shadow-styles"></a>
+    <a href="https://github.com/glombek/shadow-styles"><img
+            src="https://img.shields.io/github/stars/glombek/shadow-styles?style=social"
+            alt="stars - shadow-styles"></a>
+    <a href="https://github.com/glombek/shadow-styles"><img
+            src="https://img.shields.io/github/forks/glombek/shadow-styles?style=social"
+            alt="forks - shadow-styles"></a>
+
+    <h2>Scoped Styles</h2>
+    <div class="example">
+        <div class="thing">
+            <h2>Outside shadow-styles</h2>
+            <p>This is an example outside a shadow-styles element. The CSS for the page is affecting how it looks.</p>
+        </div>
+    </div>
+    <shadow-styles stylesheet="demo-resources/stylesheet-b.css" class="example">
+        <div class="thing">
+            <h2>Inside shadow-styles</h2>
+            <p>This is very similar markup inside a shadow-styles element with a custom stylesheet. The CSS from the
+                shadow-stylesheet is affecting how it looks.</p>
+        </div>
+    </shadow-styles>
+    <shadow-styles class="example">
+        <div class="thing">
+            <h2>Inside shadow-styles</h2>
+            <p>This is very similar markup inside a shadow-styles element with <strong>no</strong> custom stylesheet.
+                Only specific root styles (e.g. font) are affecting how it looks.</p>
+        </div>
+    </shadow-styles>
+
+    <h2>Scripting</h2>
+
+    <p>But <button onclick="document.querySelectorAll('.thing').forEach((e) => e.classList.toggle('highlight'))">this
+            button</button> can still trigger scripts affecting elements inside and outside shadow-styles elements.</p>
+
+    <h2>Scoping large frameworks</h2>
+    <p>This can be extended to include entire frameworks, or two different versions of a framework.</p>
+
+    <shadow-styles stylesheet="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" class="example">
+        <div class="alert alert-success" role="alert">
+            This element here is using Bootstrap 3 styles. But what if we want to embed a new element, taking advantage
+            of Bootstrap 5?
+        </div>
+        <shadow-styles stylesheet="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+                integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+                integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+                crossorigin="anonymous"></script>
+
+            <div class="alert alert-primary" role="alert">
+                <p>This is an alert rendered with Bootstrap 5, inside a Bootstrap 3 page!</p>
+                <p>Ooh! Look, Bootstrap 5 tabs!</p>
+            </div>
+
+            <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                        type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                        type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+                        type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                    tabindex="0">
+                    <p>Tab 1</p>
+                </div>
+                <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                    tabindex="0">
+                    <p>Tab 2</p>
+                </div>
+                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
+                    tabindex="0">
+                    <p>👻 Boo!</p>
+                </div>
+            </div>
+
+            <script>
+                const triggerTabList = document.querySelectorAll('#myTab button')
+                triggerTabList.forEach(triggerEl => {
+                    const tabTrigger = new bootstrap.Tab(triggerEl)
+
+                    triggerEl.addEventListener('click', event => {
+                        event.preventDefault()
+                        tabTrigger.show()
+                    })
+                })
+            </script>
+
+        </shadow-styles>
+    </shadow-styles>
+    <script src="shadow-styles.js" type="module"></script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "start": "http-server"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "name": "shadow-styles",
+  "description": "🕶️ A web component that makes use of the shadow DOM to scope styles, while allowing unobstructed JS interactivity",
+  "version": "0.1.0",
+  "main": "shadow-styles.js",
+  "dependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glombek/shadow-styles.git"
+  },
+  "author": "Joe Glombek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/glombek/shadow-styles/issues"
+  },
+  "homepage": "https://github.com/glombek/shadow-styles#readme"
+}
