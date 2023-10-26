@@ -1,17 +1,17 @@
 import { events, elements } from './shadowy-style-events.js';
 
 const stylesheetTemplate = document.createElement('template');
-stylesheetTemplate.innerHTML = `<link id="shadow-styles-stylesheet" rel="stylesheet" href="">`;
+stylesheetTemplate.innerHTML = `<link id="shadowy-style-stylesheet" rel="stylesheet" href="">`;
 
 const template = document.createElement('template');
 template.innerHTML = `
 <slot></slot>
-<shadow-styles-root id="content"></shadow-styles-root>`;
+<shadowy-style-root id="content"></shadowy-style-root>`;
 
-class ShadowStylesRoot extends HTMLElement { }
-window.customElements.define('shadow-styles-root', ShadowStylesRoot);
+class shadowyStyleRoot extends HTMLElement { }
+window.customElements.define('shadowy-style-root', shadowyStyleRoot);
 
-class ShadowStyles extends HTMLElement {
+class shadowyStyle extends HTMLElement {
   static observedAttributes = ['stylesheet'];
 
   constructor() {
@@ -25,10 +25,10 @@ class ShadowStyles extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'stylesheet':
-        var linkElem = this.shadowRoot.getElementById('shadow-styles-stylesheet');
+        var linkElem = this.shadowRoot.getElementById('shadowy-style-stylesheet');
         if(!linkElem) {
           this.shadowRoot.appendChild(stylesheetTemplate.content.cloneNode(true));
-          linkElem = this.shadowRoot.getElementById('shadow-styles-stylesheet');
+          linkElem = this.shadowRoot.getElementById('shadowy-style-stylesheet');
         }
         linkElem.setAttribute('href', newValue);
         break;
@@ -58,11 +58,11 @@ class ShadowStyles extends HTMLElement {
     // Intercept Bootstrap querySelectorAll calls to add children of this wrapper
     const defaultQuerySelectorAll = Element.prototype.querySelectorAll;
     const defaultDocumentQuerySelectorAll = document.querySelectorAll;
-    const shadowStyles = this;
+    const shadowyStyle = this;
     Element.prototype.querySelectorAll = function (selector) {
       let result = defaultQuerySelectorAll.call(this, selector);
 
-      if (this.contains(shadowStyles)) {
+      if (this.contains(shadowyStyle)) {
         result = [...result].concat([...container.querySelectorAll(selector)]);
 
         // Add the NodeList items missing from Array
@@ -79,7 +79,7 @@ class ShadowStyles extends HTMLElement {
     document.querySelectorAll = function (selector) {
       let result = defaultDocumentQuerySelectorAll.call(document, selector);
 
-      if (document.contains(shadowStyles)) {
+      if (document.contains(shadowyStyle)) {
         result = [...result].concat([...container.querySelectorAll(selector)]);
 
         // Add the NodeList items missing from Array
@@ -94,4 +94,4 @@ class ShadowStyles extends HTMLElement {
   }
 }
 
-window.customElements.define('shadow-styles', ShadowStyles);
+window.customElements.define('shadowy-style', shadowyStyle);

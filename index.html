@@ -5,60 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>🕶️ shadow-styles demo site</title>
+    <title>🕶️ shadowy-style demo site</title>
     <link rel="stylesheet" href="demo-resources/stylesheet-a.css" />
     <link rel="preload" href="demo-resources/stylesheet-b.css" as="style" />
 </head>
 
 <body>
-    <h1>Shadow Styles demo site 🕶️</h1>
+    <h1>Shadowy Style demo site 🕶️</h1>
 
-    <a href="https://github.com/glombek/shadow-styles" title="Go to GitHub repo"><img
-            src="https://img.shields.io/static/v1?label=glombek&message=shadow-styles&color=blue&logo=github"
-            alt="glombek - shadow-styles"></a>
-    <a href="https://github.com/glombek/shadow-styles"><img
-            src="https://img.shields.io/github/stars/glombek/shadow-styles?style=social"
-            alt="stars - shadow-styles"></a>
-    <a href="https://github.com/glombek/shadow-styles"><img
-            src="https://img.shields.io/github/forks/glombek/shadow-styles?style=social"
-            alt="forks - shadow-styles"></a>
+    <a href="https://github.com/glombek/shadowy-style" title="Go to GitHub repo"><img
+            src="https://img.shields.io/static/v1?label=glombek&message=shadowy-style&color=blue&logo=github"
+            alt="glombek - shadowy-style"></a>
+    <a href="https://github.com/glombek/shadowy-style"><img
+            src="https://img.shields.io/github/stars/glombek/shadowy-style?style=social"
+            alt="stars - shadowy-style"></a>
+    <a href="https://github.com/glombek/shadowy-style"><img
+            src="https://img.shields.io/github/forks/glombek/shadowy-style?style=social"
+            alt="forks - shadowy-style"></a>
 
     <h2>Scoped Styles</h2>
     <div class="example">
         <div class="thing">
-            <h2>Outside shadow-styles</h2>
-            <p>This is an example outside a shadow-styles element. The CSS for the page is affecting how it looks.</p>
+            <h2>Outside shadowy-style</h2>
+            <p>This is an example outside a shadowy-style element. The CSS for the page is affecting how it looks.</p>
         </div>
     </div>
-    <shadow-styles stylesheet="demo-resources/stylesheet-b.css" class="example">
+    <shadowy-style stylesheet="demo-resources/stylesheet-b.css" class="example">
         <div class="thing">
-            <h2>Inside shadow-styles</h2>
-            <p>This is very similar markup inside a shadow-styles element with a custom stylesheet. The CSS from the
-                shadow-stylesheet is affecting how it looks.</p>
+            <h2>Inside shadowy-style</h2>
+            <p>This is very similar markup inside a shadowy-style element with a custom stylesheet. The CSS from the
+                shadowy-styleheet is affecting how it looks.</p>
         </div>
-    </shadow-styles>
-    <shadow-styles class="example">
+    </shadowy-style>
+    <shadowy-style class="example">
         <div class="thing">
-            <h2>Inside shadow-styles</h2>
-            <p>This is very similar markup inside a shadow-styles element with <strong>no</strong> custom stylesheet.
+            <h2>Inside shadowy-style</h2>
+            <p>This is very similar markup inside a shadowy-style element with <strong>no</strong> custom stylesheet.
                 Only specific root styles (e.g. font) are affecting how it looks.</p>
         </div>
-    </shadow-styles>
+    </shadowy-style>
 
     <h2>Scripting</h2>
 
     <p>But <button onclick="document.querySelectorAll('.thing').forEach((e) => e.classList.toggle('highlight'))">this
-            button</button> can still trigger scripts affecting elements inside and outside shadow-styles elements.</p>
+            button</button> can still trigger scripts affecting elements inside and outside shadowy-style elements.</p>
 
     <h2>Scoping large frameworks</h2>
     <p>This can be extended to include entire frameworks, or two different versions of a framework.</p>
 
-    <shadow-styles stylesheet="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" class="example">
+    <shadowy-style stylesheet="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" class="example">
         <div class="alert alert-success" role="alert">
             This element here is using Bootstrap 3 styles. But what if we want to embed a new element, taking advantage
             of Bootstrap 5?
         </div>
-        <shadow-styles stylesheet="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+        <shadowy-style stylesheet="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
                 integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
                 crossorigin="anonymous"></script>
@@ -112,9 +112,9 @@
                 })
             </script>
 
-        </shadow-styles>
-    </shadow-styles>
-    <script src="shadow-styles.js" type="module"></script>
+        </shadowy-style>
+    </shadowy-style>
+    <script src="shadowy-style.js" type="module"></script>
 </body>
 
 </html>
