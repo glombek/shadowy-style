@@ -1,4 +1,4 @@
-import { events, elements } from './shadow-styles-events.js';
+import { events, elements } from './shadowy-style-events.js';
 
 const stylesheetTemplate = document.createElement('template');
 stylesheetTemplate.innerHTML = `<link id="shadow-styles-stylesheet" rel="stylesheet" href="">`;

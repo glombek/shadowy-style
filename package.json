@@ -5,10 +5,10 @@
   "devDependencies": {
     "http-server": "^14.1.1"
   },
-  "name": "shadow-styles",
+  "name": "shadowy-style",
   "description": "🕶️ A web component that makes use of the shadow DOM to scope styles, while allowing unobstructed JS interactivity",
   "version": "0.1.0",
-  "main": "shadow-styles.js",
+  "main": "shadowy-style.js",
   "dependencies": {
   },
   "repository": {
