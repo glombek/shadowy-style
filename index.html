@@ -45,20 +45,96 @@
         </div>
     </shadowy-style>
 
+    <div class="sticky">
+        These will follow you down the page, for testing purposes.
+        <div class="example" style="display:inline-block">
+            <span class="thing" style="display:inline-block">
+                Outside
+            </span>
+        </div>
+        <shadowy-style stylesheet="demo-resources/stylesheet-b.css" class="example" style="display:inline-block">
+            <span class="thing" style="display:inline-block">
+                Inside
+            </span>
+        </shadowy-style>
+    </div>
+
     <h2>Scripting</h2>
 
-    <p>But <button onclick="document.querySelectorAll('.thing').forEach((e) => e.classList.toggle('highlight'))">this
-            button</button> can still trigger scripts affecting elements inside and outside shadowy-style elements.</p>
+    <p>But this button can still trigger scripts affecting elements inside and outside shadowy-style elements.</p>
+        <button onclick="document.querySelectorAll('.thing').forEach((e) => e.classList.toggle('highlight'))">Toggle
+            highlight</button>
+
+
+    <h3>⚠️ Scripts are not encapsulated</h3>
+    <p>
+        This button (inside a shadowy-style) can also trigger the highlight function in the root document and other
+        shadowy-style elements.
+    </p>
+    <shadowy-style class="example">
+        <button onclick="document.querySelectorAll('.thing').forEach((e) => e.classList.toggle('highlight'))">Toggle highlight (within separate shadowy-style)</button>
+    </shadowy-style>
+
+    <p>
+        These tabs, although styled by local styles, still function thanks to the Bootstrap 5 script imported
+        elsewhere.
+    </p>
+
+    <shadowy-style class="example">
+        <style>
+            .nav-tabs li {
+                display: inline;
+            }
+
+            .tab-pane {
+                display: none;
+            }
+
+            .tab-pane.show {
+                display: block;
+            }
+        </style>
+        <ul class="nav nav-tabs mb-3 myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab2" data-bs-toggle="tab" data-bs-target="#home-tab-pane2"
+                    type="button" role="tab" aria-controls="home-tab-pane2" aria-selected="true">Home</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab2" data-bs-toggle="tab" data-bs-target="#profile-tab-pane2"
+                    type="button" role="tab" aria-controls="profile-tab-pane2" aria-selected="false">Profile</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contact-tab2" data-bs-toggle="tab" data-bs-target="#contact-tab-pane2"
+                    type="button" role="tab" aria-controls="contact-tab-pane2" aria-selected="false">Contact</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent2">
+            <div class="tab-pane fade show active" id="home-tab-pane2" role="tabpanel" aria-labelledby="home-tab"
+                tabindex="0">
+                <p>Tab 1</p>
+            </div>
+            <div class="tab-pane fade" id="profile-tab-pane2" role="tabpanel" aria-labelledby="profile-tab"
+                tabindex="0">
+                <p>Tab 2</p>
+            </div>
+            <div class="tab-pane fade" id="contact-tab-pane2" role="tabpanel" aria-labelledby="contact-tab"
+                tabindex="0">
+                <p>👻 Boo!</p>
+            </div>
+        </div>
+    </shadowy-style>
 
     <h2>Scoping large frameworks</h2>
     <p>This can be extended to include entire frameworks, or two different versions of a framework.</p>
 
     <shadowy-style stylesheet="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" class="example">
+        <link rel="stylesheet" href="demo-resources/stylesheet-a.css" />
         <div class="alert alert-success" role="alert">
             This element here is using Bootstrap 3 styles. But what if we want to embed a new element, taking advantage
             of Bootstrap 5?
         </div>
-        <shadowy-style stylesheet="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+        <shadowy-style class="example"
+            stylesheet="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
                 integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
                 crossorigin="anonymous"></script>
@@ -71,7 +147,7 @@
                 <p>Ooh! Look, Bootstrap 5 tabs!</p>
             </div>
 
-            <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+            <ul class="nav nav-tabs mb-3 myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
                         type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
@@ -101,19 +177,23 @@
             </div>
 
             <script>
-                const triggerTabList = document.querySelectorAll('#myTab button')
-                triggerTabList.forEach(triggerEl => {
-                    const tabTrigger = new bootstrap.Tab(triggerEl)
+                setTimeout(() => {
+                    const triggerTabList = document.querySelectorAll('.myTab button')
+                    triggerTabList.forEach(triggerEl => {
+                        const tabTrigger = new bootstrap.Tab(triggerEl)
 
-                    triggerEl.addEventListener('click', event => {
-                        event.preventDefault()
-                        tabTrigger.show()
+                        triggerEl.addEventListener('click', event => {
+                            event.preventDefault()
+                            tabTrigger.show()
+                        })
                     })
-                })
+                });
             </script>
 
         </shadowy-style>
     </shadowy-style>
+
+
     <script src="shadowy-style.js" type="module"></script>
 </body>
 
